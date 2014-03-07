@@ -17,11 +17,14 @@
             </intent-filter>
         </activity>
         <meta-data android:name="com.google.android.gms.version" android:value="@integer/google_play_services_version" />
-        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyCRAZI0ZpQ3-aB0X7i98GlDzOCl2aSV-AQ"/>
+        <meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyB278HIZeqSZzoAfKx3oeYFdKWLMBxbP4s"/>
 
     </application>
 
     <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>

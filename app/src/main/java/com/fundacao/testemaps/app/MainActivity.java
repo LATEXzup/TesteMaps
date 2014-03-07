@@ -2,9 +2,14 @@ package com.fundacao.testemaps.app;
 
 import android.app.Activity;
 
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 
 import android.os.StrictMode;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
@@ -25,13 +30,14 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import org.apache.http.HttpException;
 import org.apache.http.client.ClientProtocolException;
 
+import Location.UserPosition;
 import Location.map;
 import Rest.RestLiga;
 
 public class MainActivity extends Activity {
     View m = null;
-    static final LatLng SP = new LatLng(-23.3251, -46.3810);
-    static final LatLng KIEL = new LatLng(53.551, 9.993);
+    static final LatLng SP = new LatLng( -23.5965995247643721, -46.68809878834976);
+    static final LatLng Guarulhos = new LatLng(-23.560002957327292, -46.65697556208617);
     GoogleMap ma;
 
 
@@ -46,19 +52,61 @@ public class MainActivity extends Activity {
         StrictMode.setThreadPolicy(policy);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //login
         RestLiga res = new RestLiga();
-       res.Login("","");
+        res.Login("","");
+
+        //position
+        IniciarServico();
 
 
-       // ma = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-       // ma.moveCamera(CameraUpdateFactory.newLatLngZoom(SP,15));
-       // ma.animateCamera(CameraUpdateFactory.zoomTo(5),2000,null);
-       // ma.addMarker(new MarkerOptions().position(SP).title("Liga"));
+        //mapa
+
+        ma = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+        ma.setMyLocationEnabled(true);
+        ma.getMyLocation();
+        ma.setBuildingsEnabled(true);
+        ma.setTrafficEnabled(true);
+        ma.setIndoorEnabled(true);
+
+        ma.moveCamera(CameraUpdateFactory.newLatLngZoom(SP,10));
+        ma.animateCamera(CameraUpdateFactory.zoomTo(15),6000,null);
+        ma.addMarker(new MarkerOptions().position(SP).title("Liga"));
+        ma.addMarker(new MarkerOptions().position(Guarulhos).title("Roubo"));
+
+        //
+
 
     }
 
+    public void IniciarServico()
+    {
 
+        LocationManager locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+
+        LocationListener locationListener = new LocationListener() {
+            public void onLocationChanged(Location location) {
+                Atualizar(location);
+            }
+
+            public void onStatusChanged(String provider, int status, Bundle extras) {}
+
+            public void onProviderEnabled(String provider) {}
+
+            public void onProviderDisabled(String provider) {}
+
+        };
+
+        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
+    }
+    public void Atualizar(Location location)
+    {
+        Double latPoint = location.getLatitude();
+        Double lngPoint = location.getLongitude();
+        LatLng ml = new LatLng( latPoint, lngPoint);
+        ma.moveCamera(CameraUpdateFactory.newLatLngZoom(ml,10));
+
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
