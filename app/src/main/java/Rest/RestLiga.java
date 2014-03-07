@@ -39,7 +39,6 @@ public class RestLiga extends AsyncTask<Void,Void,Void>{
 
 
     //Metod Login
-    public HttpResponse Login(String user, String pass) {
         //create a new HttpClient
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost(this._hostRest + this._serviceRest);
