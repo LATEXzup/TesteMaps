@@ -24,6 +24,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.MapView;
 
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -40,8 +41,6 @@ public class MainActivity extends Activity {
     static final LatLng Guarulhos = new LatLng(-23.560002957327292, -46.65697556208617);
     GoogleMap ma;
 
-
-
     protected boolean isRouteDisplayed() {
         return false;
     }
@@ -53,25 +52,28 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //login
-        RestLiga res = new RestLiga();
-        res.Login("","");
+     //   RestLiga res = new RestLiga();
+       // res.Login("","");
 
         //position
         IniciarServico();
-
 
         //mapa
 
         ma = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
         ma.setMyLocationEnabled(true);
         ma.getMyLocation();
+
+
+
+
         ma.setBuildingsEnabled(true);
         ma.setTrafficEnabled(true);
         ma.setIndoorEnabled(true);
 
-        ma.moveCamera(CameraUpdateFactory.newLatLngZoom(SP,10));
+       // ma.moveCamera(CameraUpdateFactory.newLatLngZoom(SP,10));
         ma.animateCamera(CameraUpdateFactory.zoomTo(15),6000,null);
-        ma.addMarker(new MarkerOptions().position(SP).title("Liga"));
+        ma.addMarker(new MarkerOptions().position(SP).title("Liga").icon(BitmapDescriptorFactory.fromResource(R.drawable.ico_facebook)));
         ma.addMarker(new MarkerOptions().position(Guarulhos).title("Roubo"));
 
         //
