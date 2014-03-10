@@ -3,6 +3,7 @@ package com.fundacao.testemaps.app;
 import android.app.Activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,7 +16,10 @@ import android.view.MenuItem;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -73,11 +77,28 @@ public class MainActivity extends Activity {
 
        // ma.moveCamera(CameraUpdateFactory.newLatLngZoom(SP,10));
         ma.animateCamera(CameraUpdateFactory.zoomTo(15),6000,null);
-        ma.addMarker(new MarkerOptions().position(SP).title("Liga").icon(BitmapDescriptorFactory.fromResource(R.drawable.ico_facebook)));
+        //ma.addMarker(new MarkerOptions().position(SP).title("Acidente").icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_crash)));
         ma.addMarker(new MarkerOptions().position(Guarulhos).title("Roubo"));
 
         //
+        addListenerOnButton();
 
+    }
+    ImageButton imageButton;
+    public void addListenerOnButton() {
+
+        imageButton = (ImageButton) findViewById(R.id.btReport);
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                ma.addMarker(new MarkerOptions().position(SP).title("Loca correndo na rua").icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_crash)));
+
+            }
+
+        });
 
     }
 

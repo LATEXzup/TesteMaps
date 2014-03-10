@@ -1,5 +1,9 @@
 package Location;
 
+import com.fundacao.testemaps.app.R;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.MarkerOptions;
+
 import org.json.JSONArray;
 
 /**
@@ -28,6 +32,12 @@ public class map {
 
 
 
+    }
+
+    public void AddMarker(){
+
+
+       // ma.addMarker(new MarkerOptions().position(SP).title("Acidente").icon(BitmapDescriptorFactory.fromResource(R.drawable.pin_crash)));
     }
 
 

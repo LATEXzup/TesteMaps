@@ -4,26 +4,34 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:clickable="false">
+    android:clickable="false"
+    android:longClickable="false"
+    android:onClick="click_btFaceLogin"
+    android:clipToPadding="true"
+    android:paddingLeft="20dip"
+    android:paddingRight="20dip">
 
     <Button
         android:layout_width="317dp"
-        android:layout_height="46dp"
+        android:layout_height="50dp"
         android:id="@+id/btFbLogin"
-        android:layout_marginBottom="101dp"
-        android:src="@drawable/ico_facebook"
+        android:layout_marginBottom="63dp"
+       android:drawableLeft="@drawable/ico_facebook"
 
         android:text="@string/btFacebook"
         android:background="#4564a7"
-        android:textSize="24sp"
+        android:textSize="23sp"
         android:textStyle="bold"
         android:textColor="#fff"
-        android:padding="1dip"
         android:fontFamily="Lato"
         android:layout_alignWithParentIfMissing="true"
 
+        android:clickable="true"
+        android:focusable="false"
+        android:enabled="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
+        android:layout_centerHorizontal="true"
+        android:drawablePadding="41dip"
+        android:cursorVisible="true" />
 
 </RelativeLayout>
